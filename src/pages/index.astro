@@ -2,15 +2,1163 @@
 import "../styles/global.css"
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1 class="bg-red-500">Astro</h1>
-	</body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay McBride Digital | Solo Digital Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        dark: '#0f172a',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        jakarta: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        inter: ['"Inter"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const words = [
+                'Full-Stack Engineer.',
+                'Mobile Developer.',
+                'Web Developer.',
+                'Content Creator.',
+                'Social Media Manager.'
+            ];
+
+            const elements = document.querySelectorAll(".typed-text");
+
+            elements.forEach(el => {
+                if (window.getComputedStyle(el).display === "none") return;
+
+                let wordIndex = 0;
+                let charIndex = 0;
+                let currentWord = "";
+                let isDeleting = false;
+
+                function typeEffect() {
+                    // Skip if the element is no longer visible
+                    if (window.getComputedStyle(el).display === "none") return;
+
+                    const fullWord = words[wordIndex];
+
+                    if (isDeleting) {
+                        currentWord = fullWord.substring(0, charIndex--);
+                    } else {
+                        currentWord = fullWord.substring(0, charIndex++);
+                    }
+
+                    el.innerHTML = currentWord;
+
+                    let speed = isDeleting ? 50 : 100;
+
+                    if (!isDeleting && currentWord === fullWord) {
+                        speed = 1500;
+                        isDeleting = true;
+                    } else if (isDeleting && currentWord === "") {
+                        isDeleting = false;
+                        wordIndex = (wordIndex + 1) % words.length;
+                        speed = 500;
+                    }
+
+                    setTimeout(typeEffect, speed);
+                }
+
+                typeEffect();
+            });
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .portfolio-item {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            background: rgba(99, 102, 241, 0.9);
+        }
+
+        .nav-link:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #6366f1;
+            transition: width .3s;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .tool-logo {
+            transition: all 0.3s ease;
+        }
+
+        .tool-logo:hover {
+            filter: none;
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        .tool-logo::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(100, 35, 167, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            margin-top: 20px;
+        }
+
+        .tool-logo:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-0.5rem);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slideDown {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-light text-dark">
+
+    <!-- Glassmorphic Sticky Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/60 border-b border-white/30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <a href="#" class="text-xl md:text-2xl font-bold text-dark">
+                Jay <span class="text-primary">McBride</span> Digital.
+            </a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#home" class="nav-link text-gray-700 hover:text-primary font-medium">Home</a>
+                <a href="#services" class="nav-link text-gray-700 hover:text-primary font-medium">Services</a>
+                <a href="#portfolio" class="nav-link text-gray-700 hover:text-primary font-medium">Work</a>
+                <a href="#pricing" class="nav-link text-gray-700 hover:text-primary font-medium">Pricing</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-primary font-medium">About</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-primary font-medium">Contact</a>
+            </nav>
+            <button id="menuBtn" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden px-4 pb-4 animate-slideDown">
+            <div
+                class="flex flex-col space-y-4 bg-white/80 rounded-xl shadow-xl p-6 mt-2 backdrop-blur-md border border-white/30">
+                <a href="#home"
+                    class="nav-link text-dark font-semibold text-lg py-2 px-4 rounded-lg hover:bg-primary hover:text-white transition">Home</a>
+                <a href="#services"
+                    class="nav-link text-dark font-semibold text-lg py-2 px-4 rounded-lg hover:bg-primary hover:text-white transition">Services</a>
+                <a href="#pricing"
+                    class="nav-link text-dark font-semibold text-lg py-2 px-4 rounded-lg hover:bg-primary hover:text-white transition">Pricing</a>
+                <a href="#portfolio"
+                    class="nav-link text-dark font-semibold text-lg py-2 px-4 rounded-lg hover:bg-primary hover:text-white transition">Work</a>
+                <a href="#about"
+                    class="nav-link text-dark font-semibold text-lg py-2 px-4 rounded-lg hover:bg-primary hover:text-white transition">About</a>
+                <a href="#contact"
+                    class="nav-link text-dark font-semibold text-lg py-2 px-4 rounded-lg hover:bg-primary hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+                <!-- Left Side -->
+                <div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                        Hi, I'm Jay <span class="text-primary">Your creative partner</span> for digital growth.
+                    </h1>
+                    <!-- Mobile (Image Card with Glow) -->
+                    <div class="relative w-full h-80 md:h-96 flex md:hidden justify-center items-center mb-10 mt-10">
+                        <!-- Square Background: Rotates on desktop, static tilt on mobile -->
+                        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
+              w-80 h-80 md:w-96 md:h-96 rounded-2xl shadow-xl overflow-hidden 
+                z-0 rotate-3">
+                            <div class="w-full h-full bg-gradient-to-br from-indigo-800 to-purple-800 rounded-2xl">
+                            </div>
+                        </div>
+
+                        <!-- Profile Image (Static) -->
+                        <div class="relative z-10 -mt-8">
+
+                            <div
+                                class="w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                                <img src="images/profiles/profile.png" alt="Jay McBride Profile"
+                                    class="object-cover w-full h-full" />
+                            </div>
+                            <div class="absolute top-full mt-3 left-1/2 -translate-x-1/2 rotate-3 z-10">
+                                <div
+                                    class="text-2xl md:text-2xl font-bold text-white  font-jakarta text-center whitespace-nowrap">
+                                    <span class="border-r-2 border-white pr-1 typed-text"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 mt-6 rotate-3 origin-top w-full mt-6 rotate-3">
+                            <div class="flex flex-wrap justify-center gap-4 px-4">
+                                <!-- React Native -->
+                                <div class="tool-logo" data-tooltip="React Native">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                        alt="React Native" class="w-8 h-8">
+                                </div>
+                                <!-- Angular -->
+                                <div class="tool-logo" data-tooltip="Angular">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angularjs/angularjs-original.svg"
+                                        alt="Angular" class="w-8 h-8">
+                                </div>
+                                <!-- Swift -->
+                                <div class="tool-logo" data-tooltip="Swift">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg"
+                                        alt="Swift" class="w-8 h-8">
+                                </div>
+                                <!-- Xcode -->
+                                <div class="tool-logo" data-tooltip="Xcode">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg"
+                                        alt="Xcode" class="w-8 h-8">
+                                </div>
+                                <!-- Rails -->
+                                <div class="tool-logo" data-tooltip="Ruby on Rails">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg"
+                                        alt="Rails" class="w-8 h-8">
+                                </div>
+                                <!-- Laravel -->
+                                <div class="tool-logo" data-tooltip="Laravel">
+                                    <img src="https://cdn.worldvectorlogo.com/logos/laravel-2.svg" alt="Laravel"
+                                        class="w-8 h-8">
+                                </div>
+                                <div class="tool-logo" data-tooltip="Figma">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
+                                        alt="Figma" class="w-8 h-8">
+                                </div>
+                                <!-- Add more tools as needed -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="mt-20 md:mt-6 text-xl text-gray-600 max-w-lg">
+                        Let’s cut through the noise—I build websites that work and social content that gets seen, so
+                        your brand stands out for the right reasons.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact"
+                            class="gradient-bg text-white font-medium rounded-lg px-8 py-4 text-center hover:opacity-90 transition duration-300">
+                            Get Started
+                        </a>
+                        <a href="#portfolio"
+                            class="bg-white text-primary font-medium border-2 border-primary rounded-lg px-8 py-4 text-center hover:bg-primary hover:text-white transition duration-300">
+                            View My Work
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Side (Image Card with Glow) -->
+                <div class="relative w-full h-80 md:h-96 md:flex hidden justify-center items-center">
+                    <!-- Square Background: Rotates on desktop, static tilt on mobile -->
+                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
+              w-80 h-80 md:w-96 md:h-96 rounded-2xl shadow-xl overflow-hidden 
+                z-0 rotate-3">
+                        <div class="w-full h-full bg-gradient-to-br from-indigo-800 to-purple-800 rounded-2xl"></div>
+                    </div>
+
+                    <!-- Profile Image (Static) -->
+                    <div class="relative z-10 -mt-8">
+
+                        <div
+                            class="w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <img src="images/profiles/profile.png" alt="Jay McBride Profile"
+                                class="object-cover w-full h-full" />
+                        </div>
+                        <div class="absolute top-full mt-3 left-1/2 -translate-x-1/2 rotate-3 z-10">
+                            <div
+                                class="text-2xl md:text-2xl font-bold text-white  font-jakarta text-center whitespace-nowrap">
+                                <span class="border-r-2 border-white pr-1 typed-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 mt-6 rotate-3 origin-top w-full mt-6 rotate-3">
+                        <div class="flex flex-wrap justify-center gap-4 px-4">
+                            <!-- React Native -->
+                            <div class="tool-logo" data-tooltip="React Native">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                    alt="React Native" class="w-8 h-8">
+                            </div>
+                            <!-- Angular -->
+                            <div class="tool-logo" data-tooltip="Angular">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angularjs/angularjs-original.svg"
+                                    alt="Angular" class="w-8 h-8">
+                            </div>
+                            <!-- Swift -->
+                            <div class="tool-logo" data-tooltip="Swift">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg"
+                                    alt="Swift" class="w-8 h-8">
+                            </div>
+                            <!-- Xcode -->
+                            <div class="tool-logo" data-tooltip="Xcode">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg"
+                                    alt="Xcode" class="w-8 h-8">
+                            </div>
+                            <!-- Rails -->
+                            <div class="tool-logo" data-tooltip="Ruby on Rails">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg"
+                                    alt="Rails" class="w-8 h-8">
+                            </div>
+                            <!-- Laravel -->
+                            <div class="tool-logo" data-tooltip="Laravel">
+                                <img src="https://cdn.worldvectorlogo.com/logos/laravel-2.svg" alt="Laravel"
+                                    class="w-8 h-8">
+                            </div>
+                            <div class="tool-logo" data-tooltip="Figma">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
+                                    alt="Figma" class="w-8 h-8">
+                            </div>
+                            <!-- Add more tools as needed -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div class="w-full h-24 flex items-center justify-center">
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+    </div>
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold">My <span class="text-primary">Services</span></h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    Comprehensive digital solutions tailored to your business needs
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-gray-50 rounded-xl shadow-lg p-8 transition duration-300">
+                    <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Web Development</h3>
+                    <p class="text-gray-600 mb-4">
+                        Custom websites built with modern technologies that are fast, responsive, and SEO-friendly.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            Responsive Design
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            E-commerce Solutions
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            CMS Integration
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            SEO Optimization
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-gray-50 rounded-xl shadow-lg p-8 transition duration-300">
+                    <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">App Development</h3>
+                    <p class="text-gray-600 mb-4">
+                        Native and cross-platform mobile applications designed for performance and user engagement.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            iOS & Android Apps
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            UI/UX Design
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            API Integration
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            App Store Deployment
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-gray-50 rounded-xl shadow-lg p-8 transition duration-300">
+                    <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-pen-fancy text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Content Creation</h3>
+                    <p class="text-gray-600 mb-4">
+                        Engaging content strategies that tell your brand story and connect with your audience.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            Copywriting & Blogging
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            Social Media Content
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            Video Production
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            Brand Storytelling
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold">Featured <span class="text-primary">Work</span></h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    Check out some of my recent projects and success stories
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="portfolio-item rounded-xl overflow-hidden shadow-lg relative">
+                    <img src="images/work/musical-comedy-guild-website.png" alt="Musical Comedy Guild Website Image"
+                        class="w-full h-64 object-cover rounded-xl" />
+                    <div
+                        class="portfolio-overlay absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/40 to-transparent p-6 text-white">
+                        <div>
+                            <h3 class="text-2xl font-bold">Musical Comedy Guild Website</h3>
+                            <p class="mt-2 text-sm text-gray-200">Redesigned the Musical Comedy Guild site in WordPress,
+                                aligning their online brand with their vibrant local theatre presence.
+                            </p>
+                            <span class="mt-3 text-sm text-white/80 italic">Website Development</span>
+                            <div class="mt-4">
+                                <a href="https://mcgsault.com" target="_blank" rel="noopener noreferrer"
+                                    class="inline-block bg-white text-primary font-medium rounded-lg px-4 py-2 text-sm hover:bg-primary hover:text-white transition duration-300">
+                                    View Website <i class="fas fa-external-link-alt ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item rounded-xl overflow-hidden shadow-lg relative">
+                    <img src="images/work/grtruss-website.png" alt="GR Truss Website Image" 
+                        class="w-full h-64 object-cover rounded-xl" />
+                    <div
+                        class="portfolio-overlay absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/40 to-transparent p-6 text-white">
+                        <div>
+                            <h3 class="text-2xl font-bold">GR Truss Website</h3>
+                            <p class="mt-2 text-sm text-gray-200">Built a fast, responsive Jekyll site for GRTrus to
+                                establish their online presence and showcase their brand professionally.
+                            </p>
+                            <span class="mt-3 text-sm text-white/80 italic">Website Development</span>
+                            <div class="mt-4">
+                                <a href="https://grtruss.com" target="_blank" rel="noopener noreferrer"
+                                    class="inline-block bg-white text-primary font-medium rounded-lg px-4 py-2 text-sm hover:bg-primary hover:text-white transition duration-300">
+                                    View Website <i class="fas fa-external-link-alt ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item rounded-xl overflow-hidden shadow-lg relative">
+                    <img src="images/work/jays-tech-bites-website.png" alt="Jay's Tech Bites Website Image"
+                        class="w-full h-64 object-cover rounded-xl" />
+                    <div
+                        class="portfolio-overlay absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/40 to-transparent p-6 text-white">
+                        <div>
+                            <h3 class="text-2xl font-bold">Jay's Tech Bites Website</h3>
+                            <p class="mt-2 text-sm text-gray-200">Built a fast, SEO-friendly blog for Jay's Tech Bites
+                                using Hugo, Decap CMS, and Netlify to share tech insights.
+                            </p>
+                            <span class="mt-3 text-sm text-white/80 italic">Website Development</span>
+                            <div class="mt-4">
+                                <a href="https://jaystechbites.com" target="_blank" rel="noopener noreferrer"
+                                    class="inline-block bg-white text-primary font-medium rounded-lg px-4 py-2 text-sm hover:bg-primary hover:text-white transition duration-300">
+                                    View Website <i class="fas fa-external-link-alt ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-item rounded-xl overflow-hidden shadow-lg relative">
+                    <img src="images/work/steadyshell-habit-tracker-app.png" alt="SteadyShell App Image"
+                        class="w-full h-64 object-cover rounded-xl" />
+                    <div
+                        class="portfolio-overlay absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/40 to-transparent p-6 text-white">
+                        <div>
+                            <h3 class="text-2xl font-bold">SteadyShell App</h3>
+                            <p class="mt-2 text-sm text-gray-200">Simple and effective habit tracker app built with
+                                Flutter, designed to help users build and maintain good habits.
+                            </p>
+                            <span class="mt-3 text-sm text-white/80 italic">App Development</span>
+                            <div class="mt-4">
+                                <a href="https://apps.apple.com/ca/app/steadyshell/id6745529920" target="_blank" rel="noopener noreferrer"
+                                    class="inline-block bg-white text-primary font-medium rounded-lg px-4 py-2 text-sm hover:bg-primary hover:text-white transition duration-300">
+                                    Apple App Store <i class="fas fa-external-link-alt ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 hidden">
+                <a href="#"
+                    class="inline-block gradient-bg text-white font-medium rounded-lg px-8 py-3 hover:opacity-90 transition duration-300">
+                    View Full Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold">Transparent <span class="text-primary">Pricing</span></h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    Flexible packages designed to fit your goals, whether you're just starting or scaling up.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Starter Plan -->
+                <div
+                    class="bg-gray-50 rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-bold text-primary mb-4">Starter</h3>
+                    <p class="text-4xl font-bold mb-4">$499</p>
+                    <p class="text-gray-600 mb-6">Ideal for freelancers and small businesses launching their first site.
+                    </p>
+                    <ul class="space-y-3 text-gray-600 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Single Page
+                            Website</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Responsive
+                            Design</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Basic SEO
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="block gradient-bg text-white text-center font-medium rounded-lg px-6 py-3 hover:opacity-90 transition">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="bg-white rounded-xl shadow-xl p-8 border-2 border-primary transform scale-105">
+                    <h3 class="text-xl font-bold text-primary mb-4">Professional</h3>
+                    <p class="text-4xl font-bold mb-4">$999</p>
+                    <p class="text-gray-600 mb-6">Perfect for growing brands that need more functionality and polish.
+                    </p>
+                    <ul class="space-y-3 text-gray-600 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Multi-Page
+                            Website</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Custom Design
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Advanced SEO
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Contact Form
+                            & Integrations</li>
+                    </ul>
+                    <a href="#contact"
+                        class="block gradient-bg text-white text-center font-medium rounded-lg px-6 py-3 hover:opacity-90 transition">
+                        Book Now
+                    </a>
+                </div>
+
+                <!-- Premium Plan -->
+                <div
+                    class="bg-gray-50 rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-bold text-primary mb-4">Premium</h3>
+                    <p class="text-4xl font-bold mb-4">Custom</p>
+                    <p class="text-gray-600 mb-6">Tailored solutions for businesses with complex needs or full rebrands.
+                    </p>
+                    <ul class="space-y-3 text-gray-600 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Custom Quote
+                            & Strategy</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Full Branding
+                            & Identity</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Ongoing
+                            Support</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-primary mr-2"></i>Marketing
+                            Materials</li>
+                    </ul>
+                    <a href="#contact"
+                        class="block gradient-bg text-white text-center font-medium rounded-lg px-6 py-3 hover:opacity-90 transition">
+                        Request Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">About <span class="text-primary">Me</span></h2>
+                    <p class="text-gray-600 mb-6">
+                        From Code to Content I started as a full-stack developer, building apps and websites for
+                        businesses of all sizes. Over time, I discovered my passion for storytelling and brand
+                        strategy—so now I combine both worlds to deliver powerful, high-converting digital work. Whether
+                        it's a stunning website, a viral Reel, or a content plan that ranks—I help you show up where it
+                        counts.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Project Counter -->
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-project-diagram text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl counter" data-target="150">0</h4>
+                                <p class="text-gray-600">Projects</p>
+                            </div>
+                        </div>
+
+                        <!-- Satisfaction Counter -->
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-smile-beam text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl counter" data-target="98">0</h4>
+                                <p class="text-gray-600">Client Satisfaction</p>
+                            </div>
+                        </div>
+
+                        <!-- Industries Counter -->
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-industry text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl counter" data-target="12">0</h4>
+                                <p class="text-gray-600">Industries Covered</p>
+                            </div>
+                        </div>
+
+                        <!-- Experience Counter -->
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-calendar-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl counter" data-target="20">0</h4>
+                                <p class="text-gray-600">Years of Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2 flex justify-center">
+                    <div class="relative">
+                        <div
+                            class="w-64 h-80 bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-xl overflow-hidden">
+                            <img src="images/profiles/aboutme.png" alt="Jay McBride Profile"
+                                class="w-full h-full object-cover rounded-2xl" />
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-medal text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">I don't just build things.</h4>
+                                    <p class="text-gray-600 text-sm">I build digital momentum.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <div class="w-full h-24 flex items-center justify-center">
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold">Client <span class="text-primary">Testimonials</span></h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    Don't just take my word for it - here's what my clients say
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div
+                    class="bg-gray-50 rounded-xl shadow-lg p-8 transition duration-300 hover:transform hover:-translate-y-2">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            JD
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Jamie Dawson</h4>
+                            <p class="text-gray-500 text-sm">Founder, Bloom Cosmetics</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-600 mb-4">
+                        <i class="fas fa-quote-left text-primary opacity-30 mr-2"></i>
+                        Jay completely transformed our online presence. Our e-commerce site loads 3x faster and
+                        conversions jumped by 40% in the first month.
+                        <i class="fas fa-quote-right text-primary opacity-30 ml-2"></i>
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                    class="bg-gray-50 rounded-xl shadow-lg p-8 transition duration-300 hover:transform hover:-translate-y-2">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            MS
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Marcus Shelton</h4>
+                            <p class="text-gray-500 text-sm">CEO, Grind Fitness</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-600 mb-4">
+                        <i class="fas fa-quote-left text-primary opacity-30 mr-2"></i>
+                        The mobile app Jay built for our gym members has 95% retention after 6 months - unheard of in
+                        our industry. His attention to UX detail is exceptional.
+                        <i class="fas fa-quote-right text-primary opacity-30 ml-2"></i>
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div
+                    class="bg-gray-50 rounded-xl shadow-lg p-8 transition duration-300 hover:transform hover:-translate-y-2">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            TL
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Taylor Lin</h4>
+                            <p class="text-gray-500 text-sm">Creative Director, Muse Agency</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-600 mb-4">
+                        <i class="fas fa-quote-left text-primary opacity-30 mr-2"></i>
+                        We've worked with many developers, but Jay stands out. He understands brand storytelling and
+                        translates it perfectly into digital experiences.
+                        <i class="fas fa-quote-right text-primary opacity-30 ml-2"></i>
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust indicators -->
+            <div class="mt-16 pt-8 border-t border-gray-200">
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-12">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary">150+</div>
+                        <div class="text-gray-600">Projects Completed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary">98%</div>
+                        <div class="text-gray-600">Client Satisfaction</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary">12+</div>
+                        <div class="text-gray-600">Industries Served</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold">Let's <span class="text-primary">Connect</span></h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    Ready to start your next project? Get in touch and let's create something amazing together.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="gradient-bg p-12 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Email</h4>
+                                    <p>hello@iamjaymcbride.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Location</h4>
+                                    <p>Sault Ste. Marie, ON</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Phone</h4>
+                                    <p>+1 (705) 542-0195</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12">
+                            <h3 class="text-2xl font-bold mb-6">Follow Me</h3>
+                            <div class="flex space-x-4">
+                                <a href="#"
+                                    class=" w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#"
+                                    class="hidden w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#"
+                                    class="hidden w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                                    <i class="fab fa-dribbble"></i>
+                                </a>
+                                <a href="#"
+                                    class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-12 bg-white">
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                    <input type="text" id="name"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                    <input type="email" id="email"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <input type="text" id="subject"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea id="message" rows="5"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                            </div>
+
+                            <div class="mt-8">
+                                <button type="submit"
+                                    class="gradient-bg text-white font-medium rounded-lg px-8 py-4 w-full hover:opacity-90 transition duration-300">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Jay <span class="text-primary">McBride</span> Digital.</h3>
+                    <p class="text-gray-400">
+                        Creating digital experiences that transform businesses and engage audiences.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#services" class="hover:text-primary transition">Web Development</a></li>
+                        <li><a href="#services" class="hover:text-primary transition">App Development</a></li>
+                        <li><a href="#services" class="hover:text-primary transition">Content Creation</a></li>
+                        <li><a href="#services" class="hover:text-primary transition">UI/UX Design</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-primary transition">Home</a></li>
+                        <li><a href="#services" class="hover:text-primary transition">Services</a></li>
+                        <li><a href="#portfolio" class="hover:text-primary transition">Work</a></li>
+                        <li><a href="#pricing" class="hover:text-primary transition">Pricing</a></li>
+                        <li><a href="#about" class="hover:text-primary transition">About</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to get updates on my latest projects and insights.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email"
+                            class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-gray-800">
+                        <button type="submit" class="gradient-bg px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">© 2023 Jay McBride Digital. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-primary transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuBtn').addEventListener('click', function () {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+    </script>
+    <!-- Add this just before the closing </body> tag -->
+    <button id="scrollToTopBtn"
+        class="fixed bottom-8 right-8 w-14 h-14 gradient-bg rounded-full shadow-xl flex items-center justify-center text-white opacity-0 invisible transition-all duration-300 transform translate-y-4 hover:scale-105">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script>
+        // Scroll to Top Button
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+                scrollToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                scrollToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                scrollToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-4');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Counter Animation - Fixed Speed Control
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            const animationDuration = 500; // 2 seconds - change this to control speed
+
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const start = 0;
+                    const startTime = performance.now();
+
+                    const updateCounter = (currentTime) => {
+                        const elapsedTime = currentTime - startTime;
+                        const progress = Math.min(elapsedTime / animationDuration, 1);
+                        const currentValue = Math.floor(progress * target);
+
+                        counter.innerText = currentValue +
+                            (counter.getAttribute('data-target') === '98' ? '%' :
+                                (progress === 1 ? '+' : ''));
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        }
+                    };
+
+                    requestAnimationFrame(updateCounter);
+                });
+            };
+
+            // Trigger animation when counters are in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => {
+                observer.observe(counter.parentElement.parentElement);
+            });
+        });
+    </script>
+</body>
+
 </html>
